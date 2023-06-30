@@ -9,27 +9,37 @@ public class MainClass {
         System.out.println("|                  LOGIN PAGE                   |");
         System.out.println("+-----------------------------------------------+");
 
-        String validusername="Udith Dev";
-        String validpassword="1234";
-
-
-        Scanner scanner=new Scanner(System.in);
-       
+        String validUsername="Udith Dev";
+        String validPassword="1234";
         
-        boolean isLogged=false;
+        
+        Scanner scanner=new Scanner(System.in);
 
-        while(!isLogged){
+        boolean isLogged=true;
+
+        while(isLogged){
             System.out.print("User Name : ");
             String userName=scanner.nextLine();
-            if(userName.equals(validusername)){
-                System.out.print("Password : ");
-                int password=scanner.nextInt();
-                isLogged=true;
-                homePage();
+
+            if(userName.equals(validUsername)){
+                while (true){
+                    System.out.print("Password : ");
+                    String password=scanner.nextLine();
+                    if(password.equals(validPassword)) {
+                        homePage();
+                        isLogged = false;
+                        
+                        break;
+                    }else{
+                        System.out.println("password  is incorrect. please try again!");
+                    }
+                }
             }else{
-                System.out.println("user name is invalid. please try again!"); 
+                System.out.println("user name is invalid. please try again!");
             }
         }
+        scanner.close();
+    
     }
 
     public static void homePage(){
@@ -81,12 +91,13 @@ public class MainClass {
         }
             
         } catch (Exception e) {
-            // TODO: handle exception
+            
         }
         scanner.close();
         
     }
 
+   
     public static void supplierMnage(){
         System.out.println("+-----------------------------------------------+");
         System.out.println("|                SUPPLIAR MANAGE                |");
