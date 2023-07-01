@@ -38,7 +38,7 @@ public class MainClass {
                 System.out.println("user name is invalid. please try again!");
             }
         }
-        scanner.close();
+      
     
     }
 
@@ -81,17 +81,15 @@ public class MainClass {
         System.out.println("+-----------------------------------------------+");
 
         
-        
-            
             System.out.print(" please enter the user name  to verify it's you :  ");
-            String userName_2=scanner.nextLine();
+            String userName=scanner.next();
 
-        if(userName_2.equals("Udith Dev")){
-            System.out.println("Hey Udith Dev");
-        }else{
-            System.out.println("invalid user name.try again!");
-        }          
-        //input.close();
+            if(userName.equals("Udith Dev")){
+                System.out.printf("Hey Udith Dev");
+            }else{
+                System.out.printf("invalid user name. try again");
+            }
+
     }
 
    
