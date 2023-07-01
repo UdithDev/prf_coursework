@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class MainClass {
+    static Scanner scanner=new Scanner(System.in);
     public static void main(String[] args) {
         loginPage();
     }
@@ -12,8 +13,7 @@ public class MainClass {
         String validUsername="Udith Dev";
         String validPassword="1234";
         
-        
-        Scanner scanner=new Scanner(System.in);
+
 
         boolean isLogged=true;
 
@@ -28,7 +28,7 @@ public class MainClass {
                     if(password.equals(validPassword)) {
                         homePage();
                         isLogged = false;
-                        
+
                         break;
                     }else{
                         System.out.println("password  is incorrect. please try again!");
@@ -49,11 +49,11 @@ public class MainClass {
 
         System.out.println("[1] Change the credintials\t\t\t\t[2] Supplier Manage\n[3] Stock Manage\t\t\t\t\t[4] Log out\n[5] Exit the system");
 
-        Scanner scanner=new Scanner(System.in);
+        
 
         System.out.print("Enter an option to continue > ");
         int option=scanner.nextInt();
-        scanner.close();
+       // scanner.close();
 
         switch(option){
             case 1: chnageTheCredintials();
@@ -62,39 +62,36 @@ public class MainClass {
             case 2: supplierMnage();
             break;
 
-            case 3:
+            case 3: stockManage();
             break;
 
-            case 4:
+            case 4: logOut();
             break;
 
-            case 5:
+            case 5:exitTheSystem();
             break;
         }
         
     }
 
+    
     public static void chnageTheCredintials(){
         System.out.println("+-----------------------------------------------+");
         System.out.println("|                CREDENTIAL MANAGE              |");
         System.out.println("+-----------------------------------------------+");
 
-        Scanner scanner=new Scanner(System.in);
-        try {
+        
+        
+            
             System.out.print(" please enter the user name  to verify it's you :  ");
-        String userName_2 =scanner.nextLine();
+            String userName_2=scanner.nextLine();
 
         if(userName_2.equals("Udith Dev")){
             System.out.println("Hey Udith Dev");
         }else{
             System.out.println("invalid user name.try again!");
-        }
-            
-        } catch (Exception e) {
-            
-        }
-        scanner.close();
-        
+        }          
+        //input.close();
     }
 
    
@@ -105,5 +102,17 @@ public class MainClass {
 
         System.out.println("[1] Add Supplier\t\t\t\t[2] Update Supplier\n[3] Delete Supplier\t\t\t\t[4] View Supplier\n[5] Search Supplier\t\t\t\t[6] Home Page");
 
+    }
+
+    public static void stockManage() {
+        
+    }
+
+    public static void logOut() {
+        
+    }
+
+    public static void exitTheSystem() {
+        
     }
 }
