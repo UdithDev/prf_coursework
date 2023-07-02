@@ -10,7 +10,7 @@ public class MainClass {
         System.out.println("|                  LOGIN PAGE                   |");
         System.out.println("+-----------------------------------------------+");
 
-        String validUsername="Udith Dev";
+        String validUsername="UdithDev";
         String validPassword="1234";
         
 
@@ -80,16 +80,39 @@ public class MainClass {
         System.out.println("|                CREDENTIAL MANAGE              |");
         System.out.println("+-----------------------------------------------+");
 
-        
+        System.out.println();
+
+        boolean passwordChange=true;
+        while(passwordChange){
             System.out.print(" please enter the user name  to verify it's you :  ");
             String userName=scanner.next();
+            if(userName.equals("UdithDev")){
+                System.out.println("Hey UdithDev");
 
-            if(userName.equals("Udith Dev")){
-                System.out.printf("Hey Udith Dev");
+                while(true){
+                    System.out.print(" Enter your current password :  ");
+                    String password=scanner.next();
+                    if(password.equals("1234")){
+                    System.out.print("Enter Your new Password : ");
+                    String validPassword=scanner.next();
+                    System.out.print("Password Change successfully! Do you want to go home page (Y/N): ");
+                    String answer=scanner.next();
+                    if(answer.equals("y")){
+                        homePage();
+                    }else if(userName.equals("n")){
+                        chnageTheCredintials();
+                    }
+                    passwordChange=false;
+                    break;
+                    }else{
+                        System.out.println(" incorrect password. try again!");
+                        
+                    }
+                }
             }else{
-                System.out.printf("invalid user name. try again");
+                System.out.println("invalid user name. try again");
             }
-
+        }  
     }
 
    
