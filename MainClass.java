@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class MainClass {
     static Scanner scanner=new Scanner(System.in);
+    static String validUsername="UdithDev";
+    static String validPassword="1234";
     public static void main(String[] args) {
         loginPage();
     }
@@ -10,8 +12,7 @@ public class MainClass {
         System.out.println("|                  LOGIN PAGE                   |");
         System.out.println("+-----------------------------------------------+");
 
-        String validUsername="UdithDev";
-        String validPassword="1234";
+      
         
 
 
@@ -68,10 +69,12 @@ public class MainClass {
             case 4: logOut();
             break;
 
-            case 5:exitTheSystem();
+            case 5: System.exit(0); 
+            break;
+
+            default: System.out.println("Invalid choice!");
             break;
         }
-        
     }
 
     
@@ -94,8 +97,9 @@ public class MainClass {
                     String password=scanner.next();
                     if(password.equals("1234")){
                     System.out.print("Enter Your new Password : ");
-                    String validPassword=scanner.next();
-                    System.out.print("Password Change successfully! Do you want to go home page (Y/N): ");
+                    String newPassword=scanner.next();
+                    validPassword=newPassword;
+                    System.out.print("Password Change successfully! Do you want to go home page (Y/N)? : ");
                     String answer=scanner.next();
                     if(answer.equals("y")){
                         homePage();
@@ -123,17 +127,56 @@ public class MainClass {
 
         System.out.println("[1] Add Supplier\t\t\t\t[2] Update Supplier\n[3] Delete Supplier\t\t\t\t[4] View Supplier\n[5] Search Supplier\t\t\t\t[6] Home Page");
 
+        System.out.print("Enter an option to continue > ");
+        int option=scanner.nextInt();
+
+        switch(option){
+
+            case 1: addSupplier();
+            break;
+
+            case 2:
+            break;
+        }
+
     }
 
     public static void stockManage() {
-        
+
     }
 
     public static void logOut() {
+        loginPage();
         
     }
 
-    public static void exitTheSystem() {
+    public static void addSupplier(){
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                ADD SUPPLIER                   |");
+        System.out.println("+-----------------------------------------------+");
+
+        String supplier[][]=new String[5][2];
+
+
+       System.out.print("supplier ID : ");
+        String supplierId=scanner.next();
+
+        supplier[0][0]=supplierId;
+
+        System.out.print("supplier Name : ");
+        String supplierName=scanner.next();
+
+        supplier[0][1]=supplierName;
+
+        System.out.println(supplier[0][0]);
+        System.out.println(supplier[0][1]);
+
         
+        
+
+        System.out.println("added successfully! Do you want to add another supplier(y/n)? : ");
+        String answer=scanner.next();
+
+
     }
 }
