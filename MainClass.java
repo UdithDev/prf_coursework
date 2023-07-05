@@ -1,12 +1,11 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainClass {
     static Scanner scanner=new Scanner(System.in);
     static String validUsername="UdithDev";
     static String validPassword="1234";
-
-    static String [] supplierId=new String[5];
-    static String [] supplierName=new String[5];
+    static String supplier[][]=new String[0][2];
     public static void main(String[] args) {
         loginPage();
     }
@@ -184,6 +183,8 @@ public class MainClass {
             System.out.print("Supplier Name : ");
             String supplierName = scanner.next();
 
+            extendSupplier(id, name);
+
 
             System.out.print("added successfully ! Do you want to add another supplier (Y/N) ? ");
             char answer = scanner.next().charAt(0);
@@ -195,7 +196,8 @@ public class MainClass {
                 supplierManage();
                 break;
             }
-        }
+        } 
+        return;
     }
     public static void updateSupplier() {
 
@@ -210,6 +212,22 @@ public class MainClass {
     }
 
     public static void searchSupplier() {
+
+    }
+
+
+    public static void extendSupplier(String id, String name){ //Assign temp array values        
+            String[][] temp = new String[supplier.length+1][2];
+
+            for (int i = 0; i < supplier.length; i++) {
+                for (int j = 0; j < supplier[i].length; j++) {
+                    temp[i][j]= supplier[i][j];
+                }
+            }
+            supplier = temp;
+             supplier[supplier.length-1][0] = id;   ///// ?????????????????????????   explain
+            supplier[supplier.length-1][1]=name;
+            System.out.println(Arrays.deepToString(supplier));
 
     }
 
