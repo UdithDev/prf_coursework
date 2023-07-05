@@ -4,6 +4,9 @@ public class MainClass {
     static Scanner scanner=new Scanner(System.in);
     static String validUsername="UdithDev";
     static String validPassword="1234";
+
+    static String [] supplierId=new String[5];
+    static String [] supplierName=new String[5];
     public static void main(String[] args) {
         loginPage();
     }
@@ -11,6 +14,7 @@ public class MainClass {
         System.out.println("+-----------------------------------------------+");
         System.out.println("|                  LOGIN PAGE                   |");
         System.out.println("+-----------------------------------------------+");
+        System.out.println();
 
       
         
@@ -57,10 +61,14 @@ public class MainClass {
        // scanner.close();
 
         switch(option){
-            case 1: chnageTheCredintials();
+            case 1: 
+            clearConsole();
+            chnageTheCredintials();
             break;
 
-            case 2: supplierMnage();
+            case 2:
+            clearConsole();
+             supplierManage();
             break;
 
             case 3: stockManage();
@@ -120,7 +128,7 @@ public class MainClass {
     }
 
    
-    public static void supplierMnage(){
+    public static void supplierManage(){
         System.out.println("+-----------------------------------------------+");
         System.out.println("|                SUPPLIAR MANAGE                |");
         System.out.println("+-----------------------------------------------+");
@@ -135,7 +143,20 @@ public class MainClass {
             case 1: addSupplier();
             break;
 
-            case 2:
+            case 2:updateSupplier();
+            break;
+
+            case 3: deleteSupplier();
+            break;
+
+            case 4: viewSupplier();
+            break;
+
+            case 5: searchSupplier();
+            break;
+
+            default:
+                System.out.println("Invalid choice!");
             break;
         }
 
@@ -155,28 +176,57 @@ public class MainClass {
         System.out.println("|                ADD SUPPLIER                   |");
         System.out.println("+-----------------------------------------------+");
 
-        String supplier[][]=new String[5][2];
+
+        while (true) {
+            System.out.print("Supplier Id : ");
+            String supplierId = scanner.next();
+
+            System.out.print("Supplier Name : ");
+            String supplierName = scanner.next();
 
 
-       System.out.print("supplier ID : ");
-        String supplierId=scanner.next();
+            System.out.print("added successfully ! Do you want to add another supplier (Y/N) ? ");
+            char answer = scanner.next().charAt(0);
+            if (answer == 'y' || answer == 'Y') {
+                clearConsole();
+                addSupplier();
+            } else if (answer == 'n' || answer == 'N') {
+                clearConsole();
+                supplierManage();
+                break;
+            }
+        }
+    }
+    public static void updateSupplier() {
 
-        supplier[0][0]=supplierId;
+    }
 
-        System.out.print("supplier Name : ");
-        String supplierName=scanner.next();
+    public static void deleteSupplier() {
 
-        supplier[0][1]=supplierName;
+    }
 
-        System.out.println(supplier[0][0]);
-        System.out.println(supplier[0][1]);
+    public static void viewSupplier() {
 
-        
-        
+    }
 
-        System.out.println("added successfully! Do you want to add another supplier(y/n)? : ");
-        String answer=scanner.next();
+    public static void searchSupplier() {
 
+    }
 
+    public final static void clearConsole() {
+        final String os = System.getProperty("os.name");
+        try {
+            if (os.equals("Linux")) {
+                System.out.print("\033\143");
+            } else if (os.equals("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (final Exception e) {
+//handle the exception
+            System.err.println(e.getMessage());
+        }
     }
 }
