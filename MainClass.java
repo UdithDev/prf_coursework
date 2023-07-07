@@ -180,14 +180,16 @@ public class MainClass {
             System.out.print("Supplier Id : ");
             String supplierId = scanner.next();
 
-            System.out.print("Supplier Name : ");
-            String supplierName = scanner.next();
+            boolean duplicate=checkDuplicate(supplierId);
+            if(duplicate==true){
+                System.out.println("already exists : try another supplier id !");
+            }else if(duplicate==false){
+                 System.out.print("Supplier Name : ");
+                 String supplierName = scanner.next();
+                 extendSupplier(supplierId,supplierName);
 
-            extendSupplier(id, name);
-
-
-            System.out.print("added successfully ! Do you want to add another supplier (Y/N) ? ");
-            char answer = scanner.next().charAt(0);
+                  System.out.print("added successfully ! Do you want to add another supplier (Y/N) ? ");
+                  char answer = scanner.next().charAt(0);
             if (answer == 'y' || answer == 'Y') {
                 clearConsole();
                 addSupplier();
@@ -196,6 +198,14 @@ public class MainClass {
                 supplierManage();
                 break;
             }
+
+            }
+
+           
+           
+
+
+           
         } 
         return;
     }
@@ -225,10 +235,21 @@ public class MainClass {
                 }
             }
             supplier = temp;
-             supplier[supplier.length-1][0] = id;   ///// ?????????????????????????   explain
+
+
+            supplier[supplier.length-1][0] = id;   ///// ?????????????????????????   explain
             supplier[supplier.length-1][1]=name;
             System.out.println(Arrays.deepToString(supplier));
 
+    }
+
+    public static boolean checkDuplicate(String id){
+        for(int i =0; i<supplier.length; i++){
+            if(supplier[i][0].equals(id)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public final static void clearConsole() {
