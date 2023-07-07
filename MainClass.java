@@ -15,10 +15,6 @@ public class MainClass {
         System.out.println("+-----------------------------------------------+");
         System.out.println();
 
-      
-        
-
-
         boolean isLogged=true;
 
         while(isLogged){
@@ -42,11 +38,11 @@ public class MainClass {
                 System.out.println("user name is invalid. please try again!");
             }
         }
-      
     
     }
 
     public static void homePage(){
+        clearConsole();
         System.out.println("+-----------------------------------------------+");
         System.out.println("|       WELCOME TO IJSE STOCK MANAGMENT SYSTEM  |");
         System.out.println("+-----------------------------------------------+");
@@ -80,6 +76,7 @@ public class MainClass {
             break;
 
             default: System.out.println("Invalid choice!");
+            System.out.println();
             break;
         }
     }
@@ -139,10 +136,14 @@ public class MainClass {
 
         switch(option){
 
-            case 1: addSupplier();
+            case 1: 
+            clearConsole();
+            addSupplier();
             break;
 
-            case 2:updateSupplier();
+            case 2:
+            clearConsole();
+            updateSupplier();
             break;
 
             case 3: deleteSupplier();
@@ -200,16 +201,25 @@ public class MainClass {
             }
 
             }
-
-           
-           
-
-
-           
         } 
-        return;
     }
     public static void updateSupplier() {
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                UPDATE SUPPLIER                |");
+        System.out.println("+-----------------------------------------------+");
+        System.out.println();
+
+        System.out.print("Supplier Id : ");
+        String supplierId=scanner.next();
+
+        boolean duplicate=checkDuplicate(supplierId);
+        if(duplicate==false){
+            System.out.println("can't find supplier id. try again !");
+
+        }else if(duplicate==true){
+           
+        }
+
 
     }
 
@@ -222,6 +232,43 @@ public class MainClass {
     }
 
     public static void searchSupplier() {
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                SEARCH SUPPLIER                |");
+        System.out.println("+-----------------------------------------------+");
+        System.out.println();
+
+        while (true) {
+            System.out.print("Supplier ID: ");
+            String answer = scanner.next();
+
+            boolean isSearch=true;
+
+            for (int i = 0; i < supplier.length; i++) {
+                if (answer.equals(supplier[i][0])) {
+                    System.out.println("Supplier Name: " + supplier[i][1]);
+                    isSearch = true;
+                    System.out.print("Search successfully! ");
+                    System.out.print("Do you want to Search another(Y/N) ? ");
+                    answer = scanner.next();
+
+                    if (answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("y")) {
+                        clearConsole();
+                        searchSupplier();
+                        break;
+                    }
+                    if (answer.equalsIgnoreCase("N") || answer.equalsIgnoreCase("n")) {
+                        clearConsole();
+                        supplierManage();
+                        break;
+                    }
+                }
+            }
+            if (isSearch==false) {
+                System.out.println("can't find supplier id. try again!");
+            } else {
+                //break;
+            }
+        }
 
     }
 
