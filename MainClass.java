@@ -187,8 +187,57 @@ public class MainClass {
             addItem();
             break;
 
+            case 3: clearConsole();
+            getItemSupplierWise();
+            break;
+
         }
     }
+    public static void getItemSupplierWise(){
+        System.out.println("+-----------------------------------------------------------------------------------------------+");
+            System.out.println("|\t\t\t\t\t\t\t\tSEARCH ITEM SUPPLIER WISE\t\t\t\t\t\t\t\t\t\t|");
+            System.out.println("+-----------------------------------------------------------------------------------------------+");
+            System.out.println();
+            System.out.print("Enter the Supplier ID: ");
+            String id = scanner.next();
+            String name = "";
+    
+            for (int i = 0; i < supplier.length; i++) {
+                if (supplier[i][0].equals(id)) {
+                    name = supplier[i][1];
+                    break;
+                }
+            }
+    
+            System.out.println("Supplier Name: "+name);
+            System.out.println();
+            System.out.println("+-------------------------------------------------------------------+");
+            System.out.println("|\tItem ID\t\t|\tDescription\t\t|\tUnit Price\t|\tQty on Hand\t|");
+            System.out.println("+-------------------------------------------------------------------+");
+    
+            for (int i = 0; i < item.length; i++) {
+                if (item[i][5].equals(id)) {
+                    System.out.printf("|\t%-10s\t|\t%-18s\b\b|\t%-10s\t|\t%-12s\b |\n", item[i][0], item[i][1], item[i][2], item[i][3]);
+                }
+            }
+    
+            System.out.println("+-------------------------------------------------------------------+");
+            System.out.println();
+            System.out.print("Search successfully! ");
+            System.out.print("Do you want to search another item (Y/N)? ");
+            String answer = scanner.next();
+    
+    
+            if (answer.equalsIgnoreCase("Y")) {
+                clearConsole();
+                getItemSupplierWise();
+            } else if (answer.equalsIgnoreCase("N")) {
+                clearConsole();
+                stockManage();
+            }
+
+    }
+    
     public static void addItem(){
         boolean categories = false;
 
@@ -322,10 +371,7 @@ public class MainClass {
                     }
                 }
             }
-        }
-
-            
-
+        }        
     }
     public static void manageItemCategories(){
         System.out.println("+-----------------------------------------------+");
