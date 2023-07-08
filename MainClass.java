@@ -6,6 +6,7 @@ public class MainClass {
     static String validUsername="UdithDev";
     static String validPassword="1234";
     static String supplier[][]=new String[0][2];
+    static String item[][] = new String[0][6];
     public static void main(String[] args) {
         loginPage();
     }
@@ -227,6 +228,47 @@ public class MainClass {
         System.out.println("+-----------------------------------------------+");
         System.out.println();
 
+        while (true) {
+            System.out.print("Enter the new item category : ");
+            String category = scanner.next();
+
+            addItemExtend("","","","",category);
+
+            System.out.println();
+            System.out.println("For test only !!! "+Arrays.toString(item));
+
+            System.out.print("Added successfully! ");
+            System.out.print("Do you want to add another category(Y/N) ? ");
+            String answer = scanner.next();
+
+            System.out.println(item.length);
+            if (answer.equalsIgnoreCase("Y")) {
+                clearConsole();
+                addNewItemCategory();
+                break;
+            }
+            if (answer.equalsIgnoreCase("N")) {
+                clearConsole();
+                stockManage();
+                break;
+            }
+        } 
+    }
+    public static void addItemExtend(String id, String desc, String unitPrice, String Qty, String Category) {
+        String[][] temp = new String[item.length+1][6];
+
+        for (int i = 0; i < item.length; i++) {
+            for (int j = 0; j < item[i].length; j++) {
+                temp[i][j] = item[i][j];
+            }
+        }
+        temp[item.length][0] = id;
+        temp[item.length][1] = desc;
+        temp[item.length][2] = unitPrice;
+        temp[item.length][3] = Qty;
+        temp[item.length][4] = Category;
+        temp[item.length][5] = "";
+        item = temp;
     }
     public static void deleteItemCategory(){
 
