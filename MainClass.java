@@ -223,7 +223,7 @@ public class MainClass {
 
     }
     public static void updateItemCategorey(){
-        
+
     }
     public static void logOut() {
         loginPage();
@@ -306,7 +306,62 @@ public class MainClass {
     }
 
     public static void deleteSupplier() {
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                DELETE SUPPLIER                |");
+        System.out.println("+-----------------------------------------------+");
+        System.out.println();
 
+        while (true) {
+            int countDelete = 0;
+            System.out.print("Supplier id: ");
+            String id = scanner.next();
+
+            boolean flagSupplierID = supplierIdCheck(id);
+
+            if (flagSupplierID==true) {
+                for (int i = 0; i < supplier.length; i++) {
+                    if (supplier[i][0].equals(id)) {
+                        countDelete++;
+                    }
+                }
+                String[][] NewSuppliers = new String[supplier.length-countDelete][2];
+
+                int count = 0;
+                for (int j = 0; j < supplier.length; j++) {
+                    if (!supplier[j][0].equals(id)) {
+                        NewSuppliers[count] = supplier[j];
+                        count++;
+                    }
+                }
+                supplier = NewSuppliers;
+                System.out.println("Deleted successfully!");
+                System.out.print("Do you want to delete another (Y/N)? ");
+                String answer = scanner.next();
+                if (answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("y")) {
+                    clearConsole();
+                    deleteSupplier();
+                    break;
+                }
+                if (answer.equalsIgnoreCase("N") || answer.equalsIgnoreCase("n")) {
+                    clearConsole();
+                    supplierManage();
+                    break;
+                }
+            }
+            if (flagSupplierID == false) {
+                System.out.println("Cannot find supplier ID. Try again!");
+            }
+        }
+    }
+
+    public static boolean supplierIdCheck(String id){
+
+        for(int i=0; i<supplier.length; i++ ){
+            if(id.equals(supplier[i][0])){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void viewSupplier() {
