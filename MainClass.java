@@ -209,18 +209,41 @@ public class MainClass {
         System.out.println("+-----------------------------------------------+");
         System.out.println();
 
-        System.out.print("Supplier Id : ");
-        String supplierId=scanner.next();
+        while(true){
+            System.out.print("Supplier Id : ");
+            String supplierId=scanner.next();
 
-        boolean duplicate=checkDuplicate(supplierId);
-        if(duplicate==false){
-            System.out.println("can't find supplier id. try again !");
+            boolean duplicate=checkDuplicate(supplierId);
+            if(duplicate==false){
+                System.out.println("can't find supplier id. try again !");
 
-        }else if(duplicate==true){
-           
+            }
+            for(int i=0; i<supplier.length; i++){
+                if(duplicate==true && supplierId.equals(supplier[i][0])){
+                    System.out.println("Supplier Name: " + supplier[i][1]);
+                    System.out.print("Enter the new supplier Name :  ");
+                    String newName=scanner.next();
+
+                    for (int j = 0; j < supplier.length; j++) {
+                        if (supplierId.equals(supplier[j][0])) {
+                            supplier[j][1]=newName;
+                        }
+                    }
+                    System.out.println(Arrays.deepToString(supplier));
+                    System.out.print("Update succesfully! Do you want update another suupplier (Y/N) ? : ");
+                    String answer=scanner.next();
+                    if (answer.equals("Y")||answer.equals("y")) {
+                        clearConsole();
+                        updateSupplier();;
+                        break;
+                    }else if(answer.equals("N")||answer.equals("n")){
+                        clearConsole();
+                        supplierManage();
+                    }
+
+                }
+            }
         }
-
-
     }
 
     public static void deleteSupplier() {
@@ -239,24 +262,24 @@ public class MainClass {
 
         while (true) {
             System.out.print("Supplier ID: ");
-            String answer = scanner.next();
+            String supplierId = scanner.next();
 
-            boolean isSearch=true;
+            boolean isSearch=false;
 
             for (int i = 0; i < supplier.length; i++) {
-                if (answer.equals(supplier[i][0])) {
+                if (supplierId.equals(supplier[i][0])) {
                     System.out.println("Supplier Name: " + supplier[i][1]);
                     isSearch = true;
                     System.out.print("Search successfully! ");
                     System.out.print("Do you want to Search another(Y/N) ? ");
-                    answer = scanner.next();
+                    supplierId = scanner.next();
 
-                    if (answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("y")) {
+                    if (supplierId.equals("Y")|| supplierId.equals("y")) {
                         clearConsole();
                         searchSupplier();
                         break;
                     }
-                    if (answer.equalsIgnoreCase("N") || answer.equalsIgnoreCase("n")) {
+                    if (supplierId.equals("N")||supplierId.equals("n")) {
                         clearConsole();
                         supplierManage();
                         break;
