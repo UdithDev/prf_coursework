@@ -271,7 +271,62 @@ public class MainClass {
         item = temp;
     }
     public static void deleteItemCategory(){
+        int countDelete=0;
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                DELETE ITEM CATEGORY           |");
+        System.out.println("+-----------------------------------------------+");
+        System.out.println();
 
+        while (true) {
+            System.out.print("Item Category: ");
+            String id = scanner.next();
+
+            boolean flagSupplierID = checkCategory(id);
+
+            if (flagSupplierID==true) {
+                for (int i = 0; i < item.length; i++) {        //delete countt eka ganima
+                    if (item[i][4].equals(id)) {
+                        countDelete++;
+                    }
+                }
+                String[][] deleteItem = new String[item.length-countDelete][5];       //delete karata passe thiyana items daa ganimata array ekk hadaganima
+                int count = 0;
+
+                for (int j = 0; j < item.length; j++) {
+                    if (!item[j][4].equals(id)) {                       //category value (item[j][4]) is not equal to the specified id.
+                        deleteItem[count] = item[j];
+                        count++;
+                    }
+                }
+                item = deleteItem;
+                System.out.println("Deleted successfully!");
+                System.out.print("Do you want to delete another (Y/N)? ");
+                String answer = scanner.next();
+
+                if (answer.equalsIgnoreCase("Y")) {
+                    clearConsole();
+                    deleteItemCategory();
+                    break;
+                }
+                if (answer.equalsIgnoreCase("N")) {
+                    clearConsole();
+                    stockManage();
+                    break;
+                }
+            }
+            if (flagSupplierID == false){
+                System.out.println("Can't find Item Category. Try again!");
+            }
+        }
+
+    }
+    public static boolean checkCategory(String id) {
+        for (int i = 0; i < item.length; i++) {
+            if (item[i][4].equals(id)) {
+                return true;
+            }
+        }
+        return false;
     }
     public static void updateItemCategorey(){
 
@@ -388,12 +443,12 @@ public class MainClass {
                 System.out.println("Deleted successfully!");
                 System.out.print("Do you want to delete another (Y/N)? ");
                 String answer = scanner.next();
-                if (answer.equals("Y") || answer.equals("y")) {
+                if (answer.equals("Y")) {
                     clearConsole();
                     deleteSupplier();
                     break;
                 }
-                if (answer.equals("N") || answer.equals("n")) {
+                if (answer.equals("N") ) {
                     clearConsole();
                     supplierManage();
                     break;
