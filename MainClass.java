@@ -178,7 +178,12 @@ public class MainClass {
 
         switch(option){
 
-            case 1: 
+            case 1: clearConsole();
+             manageItemCategories();
+            break;
+
+            case 2: clearConsole();
+
         }
         
     }
@@ -217,6 +222,10 @@ public class MainClass {
 
   
     public static void addNewItemCategory() {
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                ADD NEW ITEM CATEGORY          |");
+        System.out.println("+-----------------------------------------------+");
+        System.out.println();
 
     }
     public static void deleteItemCategory(){
@@ -337,12 +346,12 @@ public class MainClass {
                 System.out.println("Deleted successfully!");
                 System.out.print("Do you want to delete another (Y/N)? ");
                 String answer = scanner.next();
-                if (answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("y")) {
+                if (answer.equals("Y") || answer.equals("y")) {
                     clearConsole();
                     deleteSupplier();
                     break;
                 }
-                if (answer.equalsIgnoreCase("N") || answer.equalsIgnoreCase("n")) {
+                if (answer.equals("N") || answer.equals("n")) {
                     clearConsole();
                     supplierManage();
                     break;
@@ -364,8 +373,37 @@ public class MainClass {
         return false;
     }
 
+    /**
+     * 
+     */
     public static void viewSupplier() {
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                   VIEW SUPPLIER               |");
+        System.out.println("+-----------------------------------------------+");
+        System.out.println();
 
+        while (true){
+            System.out.println();
+            System.out.println("+-----------------------------------------------+");
+            System.out.println("|\tSupplier ID\t\t|      Supplier Name\t\t      |");
+            System.out.println("+-----------------------------------------------+");
+            for (int i = 0; i < supplier.length; i++) {
+                System.out.printf("|\t%-12s\t|\t\t%-14s\t\t|\n", supplier[i][0], supplier[i][1]);
+            }
+            System.out.println("+-----------------------------------------------+");
+
+            System.out.println();
+            System.out.print("Do you want to go supplier manage page(Y/N) ? ");
+            String answer = scanner.next();
+
+            if (answer.equalsIgnoreCase("Y")) {
+                clearConsole();
+                supplierManage();
+                break;
+            }else if(answer.equalsIgnoreCase("N")){
+                clearConsole();
+            }
+        }
     }
 
     public static void searchSupplier() {
