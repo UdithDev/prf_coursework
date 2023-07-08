@@ -155,6 +155,9 @@ public class MainClass {
             case 5: searchSupplier();
             break;
 
+            case 6: homePage();
+            break;
+
             default:
                 System.out.println("Invalid choice!");
             break;
@@ -163,9 +166,65 @@ public class MainClass {
     }
 
     public static void stockManage() {
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                STOCK MANAGE                   |");
+        System.out.println("+-----------------------------------------------+");
+        System.out.println();
 
+        System.out.println("[1] Manage Item Categories\t\t\t\t[2] Add Item\n[3] Get Item Supplier Wise\t\t\t\t[4] View Items\n[5] Rank Item per Unit Price\t\t\t\t[6] Home Page");
+
+        System.out.print("Enter an option to continue > ");
+        int option=scanner.nextInt();
+
+        switch(option){
+
+            case 1: 
+        }
+        
+    }
+    public static void manageItemCategories(){
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                MANAGE ITEM CATEGORIES         |");
+        System.out.println("+-----------------------------------------------+");
+        System.out.println();
+            
+
+       System.out.println("[1] Add New  Item Category\t\t\t\t[2] Delete Item Category\n[3] Update Item Catogery\t\t\t\t[4] Stock Management");
+
+       System.out.print("Enter an option to continue > ");
+       int option=scanner.nextInt();
+
+       switch(option){
+
+        case 1 : clearConsole();
+        addNewItemCategory();
+        break;
+        case 2:clearConsole();
+         deleteItemCategory();
+        break;
+
+        case 3:clearConsole();
+         updateItemCategorey();
+        break;
+
+        case 4 :clearConsole();
+         supplierManage();
+        break;
+
+
+       }
     }
 
+  
+    public static void addNewItemCategory() {
+
+    }
+    public static void deleteItemCategory(){
+
+    }
+    public static void updateItemCategorey(){
+        
+    }
     public static void logOut() {
         loginPage();
         
