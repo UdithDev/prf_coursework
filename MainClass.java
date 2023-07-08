@@ -184,9 +184,148 @@ public class MainClass {
             break;
 
             case 2: clearConsole();
+            addItem();
+            break;
 
         }
-        
+    }
+    public static void addItem(){
+        boolean categories = false;
+
+        for (int i = 0; i < item.length-1; i++) {
+            if (item[i][4] != null) {
+                categories=true;
+                break;
+            }
+        }
+
+        boolean suppliers = false;
+
+        for (int i = 0; i < supplier.length-1; i++) {
+            if (supplier[i][0] != null) {
+                suppliers=true;
+                break;
+            }
+        }
+
+        if (!categories) {
+            System.out.println("+---------------------------------------------------------------------------------------+");
+            System.out.println("|\t\t\t\t\t\t\t\t\tADD ITEM\t\t\t\t\t\t\t\t\t\t\t|");
+            System.out.println("+---------------------------------------------------------------------------------------+");
+            System.out.println();
+            System.out.println("OOPS! It seems that you don't have any item categories in the system.");
+            System.out.print("Do you want to add a new item category? (Y/N) ");
+            String answer = scanner.next();
+
+            if (answer.equalsIgnoreCase("Y")) {
+                clearConsole();
+                addNewItemCategory();
+            } else if (answer.equalsIgnoreCase("N")) {
+                clearConsole();
+                stockManage();
+            }
+        } else if (!suppliers) {
+            System.out.println("+---------------------------------------------------------------------------------------+");
+            System.out.println("|\t\t\t\t\t\t\t\t\tADD ITEM\t\t\t\t\t\t\t\t\t\t\t|");
+            System.out.println("+---------------------------------------------------------------------------------------+");
+            System.out.println();
+            System.out.println("OOPS! It seems that you don't have any item suppliers in the system.");
+            System.out.print("Do you want to add a new supplier category? (Y/N) ");
+            String answer = scanner.next();
+
+            if (answer.equalsIgnoreCase("Y")) {
+                clearConsole();
+                addSupplier();
+            } else if (answer.equalsIgnoreCase("N")) {
+                clearConsole();
+                stockManage();
+            }
+        } else {
+            System.out.println("+---------------------------------------------------------------------------------------+");
+            System.out.println("|\t\t\t\t\t\t\t\t\tADD ITEM\t\t\t\t\t\t\t\t\t\t\t|");
+            System.out.println("+---------------------------------------------------------------------------------------+");
+            System.out.println();
+
+            System.out.print("Item id: ");
+            String id = scanner.next();
+            System.out.println();
+
+            System.out.println("+---------------------------------------------------------------+");
+            System.out.println("|\t #\t\t\t|\tSupplier ID\t\t\t|\tSupplier Name\t\t|");
+            System.out.println("+---------------------------------------------------------------+");
+
+            for (int i = 0; i < supplier.length; i++) {
+                System.out.printf("|\t %-10s |\t%-18s\t|\t%-18s\t|\n", (i+1), supplier[i][0], supplier[i][1]);
+            }
+
+            System.out.println("+---------------------------------------------------------------+");
+            System.out.println();
+            System.out.print("Enter the Supplier number > ");
+            int supplierNumber = scanner.nextInt();
+
+            if (supplierNumber > 0 && supplierNumber <= supplier.length) {                                      ///////////////////////////////////////////////
+                String supplierId = supplier[supplierNumber-1][0];
+
+                System.out.println("+-------------------------------------------+");
+                System.out.println("|\t #\t\t\t|\tCategory name\t\t\t|");
+                System.out.println("+-------------------------------------------+");
+
+                for (int k = 0; k < item.length; k++) {
+                    System.out.printf("|\t %-10s |\t%-18s\t\t|\n", (k+1), item[k][4]);
+                }
+
+                System.out.println("+-------------------------------------------+");
+                System.out.println();
+                System.out.print("Enter the Category number > ");
+                int categoryNumber = scanner.nextInt();
+
+                if (categoryNumber > 0 && categoryNumber <= item.length) {
+                    String category = item[categoryNumber-1][4];
+
+                    System.out.print("Description: ");
+                    String description = scanner.next();
+                    System.out.println();
+                    System.out.print("Unit Price: ");
+                    String unitPrice = scanner.next();
+                    System.out.println();
+                    System.out.print("Qty on hand: ");
+                    String qty = scanner.next();
+                    System.out.println();
+
+                    item[item.length-1][0] = id;
+                    item[item.length-1][1] = description;
+                    item[item.length-1][2] = unitPrice;
+                    item[item.length-1][3] = qty;
+                    item[item.length-1][4] = category;
+                    item[item.length-1][5] = supplierId;
+
+                    System.out.print(item[item.length-1][0]+", ");
+                    System.out.print(item[item.length-1][1]+", ");
+                    System.out.print(item[item.length-1][2]+", ");
+                    System.out.print(item[item.length-1][3]+", ");
+                    System.out.print(item[item.length-1][4]+", ");
+                    System.out.print(item[item.length-1][5]);
+                    System.out.println();
+
+                    addItemExtend(id, description, unitPrice, qty, category);
+
+                    System.out.println("Added successfully!");
+                    System.out.print("Do you want to add another Item (Y/N)? ");
+                    String answer = scanner.next();
+
+                    if (answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("y")) {
+                        clearConsole();
+                        addItem();
+                    } else if (answer.equalsIgnoreCase("N") || answer.equalsIgnoreCase("n")) {
+                        clearConsole();
+                        stockManage();
+                    }
+                }
+            }
+        }
+
+            
+
     }
     public static void manageItemCategories(){
         System.out.println("+-----------------------------------------------+");
@@ -210,7 +349,7 @@ public class MainClass {
         break;
 
         case 3:clearConsole();
-         updateItemCategorey();
+         updateItemCategory();
         break;
 
         case 4 :clearConsole();
@@ -328,7 +467,47 @@ public class MainClass {
         }
         return false;
     }
-    public static void updateItemCategorey(){
+    public static void updateItemCategory(){
+        System.out.println("+-----------------------------------------------+");
+        System.out.println("|                UPDATE ITEM CATEGORY           |");
+        System.out.println("+-----------------------------------------------+");
+        System.out.println();
+
+
+        while (true){
+            System.out.print("Item Category : ");
+            String Category = scanner.next();
+//            boolean duplicate = checkDuplicate(Category);
+            boolean flagCategory = checkCategory(Category);
+
+            if (flagCategory==false) {
+                System.out.println("can't find Item Category. try again!");
+            }
+            if (flagCategory==true) {
+                System.out.print(" Update Item Category :");
+                String updateCategory = scanner.next();
+                for (int i = 0; i < item.length; i++) {
+                    if (item[i][4].equals(Category)) {
+                        item[i][4] = updateCategory;
+                    }
+                }
+                System.out.println("updated successfully! ");
+            }
+
+            System.out.print("Do you want to updated another(Y/N) ? ");
+            String answer = scanner.next();
+
+            if (answer.equalsIgnoreCase("Y")) {
+                clearConsole();
+                updateItemCategory();
+                break;
+            }
+            if (answer.equalsIgnoreCase("N")) {
+                clearConsole();
+                manageItemCategories();
+                break;
+            }
+        }
 
     }
     public static void logOut() {
