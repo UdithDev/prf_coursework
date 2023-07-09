@@ -199,6 +199,14 @@ public class MainClass {
             rankItem();
             break;
 
+            case 6: clearConsole();
+            homePage();
+            break;
+
+            default:
+             System.out.println("Invalid choice!");
+            break;
+
         }
     }
     public static void rankItem(){
