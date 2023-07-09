@@ -191,6 +191,83 @@ public class MainClass {
             getItemSupplierWise();
             break;
 
+            case 4 : clearConsole();
+            viewItem();
+            break;
+
+            case 5 : clearConsole();
+            rankItem();
+            break;
+
+        }
+    }
+    public static void rankItem(){
+        for (int i = 0; i < item.length-1-i; i++) {
+            for (int j = 0; j < item.length-1; j++) {
+                String price1 = item[j][3];
+                String price2 = item[j+1][3];
+
+                try{
+                    double doublePrice1 = Double.parseDouble(price1);
+                    double doublePrice2 = Double.parseDouble(price2);
+
+                    if (doublePrice1>doublePrice2){
+                        String[] temp = item[j];
+                        item[j] = item[j+1];
+                        item[j+1] = temp;
+                    }
+
+                }catch (NumberFormatException e) {
+                    //print error (sout)
+                }
+
+            }
+        }
+
+        System.out.println("+---------------------------------------------------------------------------------------------------------------+");
+        System.out.println("|\tSupplier id \t\t|\tItem code\t|\tDescription\t\t|\tPrice\t\t\t|\tQty\t\t\t|\tCategory\t|");
+        System.out.println("+---------------------------------------------------------------------------------------------------------------+");
+        for (int i = 0; i < item.length; i++) {
+            System.out.printf("|\t%-18s\t|\t%-10s\t|\t%-15s\t|\t%-8s\t\t|\t%-10s\t|\t%-10s\t|\n", item[i][5], item[i][0], item[i][1], item[i][2], item[i][3], item[i][4]);
+        }
+        System.out.println("+---------------------------------------------------------------------------------------------------------------+");
+        System.out.println();
+        System.out.print("Do you want to go to stock manage page? (Y/N) ");
+        String answer = scanner.next();
+
+        if (answer.equalsIgnoreCase("Y")) {
+            clearConsole();
+            stockManage();
+        } else if (answer.equalsIgnoreCase("N") ) {
+
+        }
+    }
+
+    public static void viewItem(){
+        System.out.println("+----------------------------------------------------------------------------------------+");
+        System.out.println("|\t\t\t\t\t\t\t\tVIEW ITEMS BY CATEGORY\t\t\t\t\t\t\t\t\t|");
+        System.out.println("+----------------------------------------------------------------------------------------+");
+        System.out.println();
+
+
+        for (int i = 0; i < item.length; i++) {
+            String categary = item[i][4];
+            System.out.println(categary+" : ");
+            System.out.println("+-----------------------------------------------------------------------+");
+            System.out.println("|\tItem ID\t\t|\tDescription\t\t|\tUnit Price\t|\tQty on Hand\t\t|");
+            System.out.println("+-----------------------------------------------------------------------+");
+            System.out.printf("|\t%-10s\t|\t%-18s\b\b|\t%-10s\t|\t%-12s\t|\n",item[i][0],item[i][1],item[i][2],item[i][3]);
+            System.out.println("+-----------------------------------------------------------------------+");
+        }
+        System.out.println();
+        System.out.println("Do you want to go stock manage page?(Y/N) ");
+        String answer = scanner.next();
+        if (answer.equalsIgnoreCase("Y")) {
+            clearConsole();
+            stockManage();
+        } else if (answer.equalsIgnoreCase("N")) {
+            clearConsole();
+            viewItem();
         }
     }
     public static void getItemSupplierWise(){
